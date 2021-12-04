@@ -32,10 +32,26 @@ namespace my_new_app.Controllers
             _configuration = configuration;
             // _logger = logger;
 
+
             switch (database)
             {
-                case "":
-                    con.ConnectionString = _configuration.GetConnectionString("TestConnectionString");
+                case "Be":
+                    con.ConnectionString = _configuration.GetConnectionString("BelgiumConnectionstring");
+                    break;
+                case "Nl":
+                    con.ConnectionString = _configuration.GetConnectionString("NetherlandsConnectionstring");
+                    break;
+                case "Pl":
+                    con.ConnectionString = _configuration.GetConnectionString("PolandConnectionstring");
+                    break;
+                case "Uk":
+                    con.ConnectionString = _configuration.GetConnectionString("UkConnectionstring");
+                    break;
+                case "Jp":
+                    con.ConnectionString = _configuration.GetConnectionString("JapanConnectionstring");
+                    break;
+                case "Us":
+                    con.ConnectionString = _configuration.GetConnectionString("USAConnectionstring");
                     break;
                 default:
                     break;
