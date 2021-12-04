@@ -27,6 +27,8 @@ namespace my_new_app.Controllers
         private readonly ILogger<TablesController> _logger;
         private readonly IConfiguration _configuration;
 
+
+
         public TablesController(/*ILogger<TablesController> logger*/IConfiguration configuration)
         {
             _configuration = configuration;
@@ -62,7 +64,7 @@ namespace my_new_app.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine(ex);
             }
         }
 

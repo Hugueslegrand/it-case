@@ -36,6 +36,7 @@ namespace my_new_app
             //Configure the services
             services.AddTransient<TablesService>();
             services.AddTransient<ColumnsService>();
+            services.AddSingleton<IDatabaseService, DatabaseService > ();
 
             services.AddControllersWithViews().
                 AddNewtonsoftJson(options =>
