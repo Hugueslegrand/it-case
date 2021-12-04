@@ -29,6 +29,8 @@ namespace my_new_app
         public void ConfigureServices(IServiceCollection services)
         {
             //Configure DbContext with SQL
+            //services.AddDbContext<AppBeContext>(options => options.UseSqlServer(Configuration.GetConnectionString("BelgiumConnectionstring"))); //deze lijn moet meermaals terugkomen voor elke db appnlcontext, appbecontext...
+            //services.AddDbContext<AppNlContext>(options => options.UseSqlServer(Configuration.GetConnectionString("TestConnectionString"))); //deze lijn moet meermaals terugkomen voor elke db appnlcontext, appbecontext...
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("TestConnectionString")));
 
             //Configure the services

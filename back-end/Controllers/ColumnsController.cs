@@ -55,7 +55,7 @@ namespace my_new_app.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine(ex);
             }
         }
        
@@ -75,11 +75,11 @@ namespace my_new_app.Controllers
         }*/
 
         //API end point to get all columns
-        [HttpGet("get-columnsNames")]
-        public IActionResult GetAllColumnNames()
-        {
-            var allColumnNames = _columnsServive.GetAllColumnNames();
-            return Ok(allColumnNames);
-        }
+        //[HttpGet("get-columnsNames")]
+        //public IActionResult GetAllColumnNames()
+        //{
+        //    var allColumnNames = _columnsServive.GetAllColumnNames();
+        //    return Ok(allColumnNames);
+        //}
     }
 }

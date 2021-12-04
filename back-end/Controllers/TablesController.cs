@@ -74,13 +74,11 @@ namespace my_new_app.Controllers
          }*/
 
 
-        [HttpPost]
-        public JsonResult Post(ChosenDatabase chosenDatabase) {
-
-           
+        //[HttpPost]
+        //public JsonResult Post(ChosenDatabase chosenDatabase) {         
 
 
-        }
+        //}
 
         // 2nd way of retrieving data from the database
         [HttpGet]
