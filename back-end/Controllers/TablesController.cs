@@ -32,7 +32,14 @@ namespace my_new_app.Controllers
             _configuration = configuration;
             // _logger = logger;
 
-            con.ConnectionString = _configuration.GetConnectionString("TestConnectionString");
+            switch (database)
+            {
+                case "":
+                    con.ConnectionString = _configuration.GetConnectionString("TestConnectionString");
+                    break;
+                default:
+                    break;
+            }
         }
 
        // 1ste way of retrieving data from the database
@@ -74,13 +81,8 @@ namespace my_new_app.Controllers
          }*/
 
 
-        [HttpPost]
-        public JsonResult Post(ChosenDatabase chosenDatabase) {
-
-           
-
-
-        }
+       // [HttpPost]
+      
 
         // 2nd way of retrieving data from the database
         [HttpGet]
