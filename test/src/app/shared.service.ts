@@ -17,6 +17,7 @@ export class SharedService {
   return this.http.post(this.APIUrl + '/Tables', val);
 }*/
 selectedTable(val:string):any{
+  console.log(val);
   return this.http.post(this.APIUrl+'/Tables/SelectTable',val);
 }
 

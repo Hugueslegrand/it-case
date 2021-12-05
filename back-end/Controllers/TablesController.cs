@@ -142,6 +142,7 @@ namespace my_new_app.Controllers
              _tablesServive = tablesService;
          }*/
 
+        // Post to request the selected table from angular (success)
         [HttpPost()]
         public IActionResult SelectTable([FromQuery] string tableName)
         {
@@ -152,7 +153,8 @@ namespace my_new_app.Controllers
             }
             TempData["SelectedTable"] = data;
             Console.WriteLine(TempData["SelectedTable"]);
-            return RedirectToAction("Index", "Columns");
+            return Ok();
+            //return RedirectToAction("Index", "Columns");
         }
 
 
