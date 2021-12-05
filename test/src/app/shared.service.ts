@@ -11,10 +11,13 @@ export class SharedService {
   constructor(private http: HttpClient) { }
 
   getTableList(): Observable < any[] > {
-    return this.http.get < any > (this.APIUrl+'/Tables/getTableNames');
+    return this.http.get < any > (this.APIUrl+'/Tables/GetTableNames/getTableNames');
 }
 /*addDatabase(val: any) {
   return this.http.post(this.APIUrl + '/Tables', val);
 }*/
+selectedTable(val:string):any{
+  return this.http.post(this.APIUrl+'/Tables/SelectTable',val);
+}
 
 }

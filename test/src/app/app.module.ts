@@ -6,15 +6,18 @@ import { AppComponent } from './app.component';
 import { TableComponent } from './table/table.component';
 import { ShowTaComponent } from './table/show-ta/show-ta.component';
 
+
 import { HttpClientModule } from "@angular/common/http";
 import { SharedService } from "./shared.service";
 import { FormsModule,ReactiveFormsModule } from "@angular/forms";
+
 
 @NgModule({
   declarations: [
     AppComponent,
     TableComponent,
-    ShowTaComponent
+    ShowTaComponent,
+
   ],
   imports: [
     BrowserModule,
