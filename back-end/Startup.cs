@@ -29,6 +29,14 @@ namespace my_new_app
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Enable Cors
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            });
+            services.AddCors(options => options.AddDefaultPolicy(
+                builder => builder.AllowAnyOrigin()));
+
             //Configure DbContext with SQL
             //services.AddDbContext<AppBeContext>(options => options.UseSqlServer(Configuration.GetConnectionString("BelgiumConnectionstring"))); //deze lijn moet meermaals terugkomen voor elke db appnlcontext, appbecontext...
             //services.AddDbContext<AppNlContext>(options => options.UseSqlServer(Configuration.GetConnectionString("TestConnectionString"))); //deze lijn moet meermaals terugkomen voor elke db appnlcontext, appbecontext...
@@ -60,19 +68,13 @@ namespace my_new_app
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "my_books", Version = "v1" });
             });
 
-            //Enable Cors
-            /*services.AddCors(c =>
-            {
-                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-            });*/
-            services.AddCors(options => options.AddDefaultPolicy(
-                builder => builder.AllowAnyOrigin()));
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseCors();
+           
 
             if (env.IsDevelopment())
              {
@@ -95,8 +97,9 @@ namespace my_new_app
              }
 
              app.UseRouting();
+            app.UseCors("AllowOrigin");
 
-             app.UseEndpoints(endpoints =>
+            app.UseEndpoints(endpoints =>
              {
                  /*endpoints.MapControllerRoute(
                      name: "default",
