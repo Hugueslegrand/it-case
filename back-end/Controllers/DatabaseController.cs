@@ -17,18 +17,23 @@ namespace my_new_app.Data
             this.databaseService = databaseService;
         }
 
-        [HttpPost]
+        [HttpPost("Connect")]
         public IActionResult Connect([FromQuery] string CountryCode)
         {
+            string data = "";
             //Console.WriteLine(CountryCode);
             //this.CountryCode = CountryCode;
             //return Ok(CountryCode);
-            if (CountryCode == null) 
+            if (CountryCode != null) 
             {
-                return BadRequest(); 
+                data = CountryCode;
             }
-            databaseService.SetCountryCode(CountryCode);
-            return Ok();
+            //databaseService.SetCountryCode(CountryCode);
+           
+            
+            TempData["CountryCode"] = data;
+            Console.WriteLine(TempData["CountryCode"]);
+            return RedirectToAction("Index", "Tables");
         }
     }
 }

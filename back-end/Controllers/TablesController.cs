@@ -14,9 +14,9 @@ using my_new_app.Data.Models;
 
 namespace my_new_app.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
-    public class TablesController : ControllerBase
+    public class TablesController : Controller
     {
         SqlCommand com = new SqlCommand();
         SqlDataReader dr;
@@ -28,18 +28,84 @@ namespace my_new_app.Controllers
         private readonly IConfiguration _configuration;
 
 
-
         public TablesController(/*ILogger<TablesController> logger*/IConfiguration configuration)
         {
             _configuration = configuration;
             // _logger = logger;
 
-            con.ConnectionString = _configuration.GetConnectionString("TestConnectionString");
+            //switch (database)
+            //{
+            //    case "Be":
+            //        con.ConnectionString = _configuration.GetConnectionString("BelgiumConnectionstring");
+            //        break;
+            //    case "Nl":
+            //        con.ConnectionString = _configuration.GetConnectionString("NetherlandsConnectionstring");
+            //        break;
+            //    case "Pl":
+            //        con.ConnectionString = _configuration.GetConnectionString("PolandConnectionstring");
+            //        break;
+            //    case "Uk":
+            //        con.ConnectionString = _configuration.GetConnectionString("UkConnectionstring");
+            //        break;
+            //    case "Jp":
+            //        con.ConnectionString = _configuration.GetConnectionString("JapanConnectionstring");
+            //        break;
+            //    case "Us":
+            //        con.ConnectionString = _configuration.GetConnectionString("USAConnectionstring");
+            //        break;
+            //    default:
+            //        break;
+            //}
         }
 
-       // 1ste way of retrieving data from the database
+        [HttpGet("Index")]
+        public IActionResult Index()
+        {
+
+            Console.WriteLine(TempData["CountryCode"].GetType());
+
+            //string countryCode = TempData["CountryCode"].ToString();
+            //Console.WriteLine(countryCode);
+            ////if (TempData.ContainsKey("CountryCode"))
+            ////{
+            ////    countryCode = TempData["CountryCode"].ToString();
+            ////}
+            //switch (countryCode)
+            //{
+            //    case "Be":
+            //        con.ConnectionString = _configuration.GetConnectionString("BelgiumConnectionstring");
+            //        Console.WriteLine(con.ConnectionString);
+            //        break;
+            //    case "Nl":
+            //        con.ConnectionString = _configuration.GetConnectionString("NetherlandsConnectionstring");
+            //        Console.WriteLine(con.ConnectionString);
+            //        break;
+            //    case "Pl":
+            //        con.ConnectionString = _configuration.GetConnectionString("PolandConnectionstring");
+            //        Console.WriteLine(con.ConnectionString);
+            //        break;
+            //    case "Uk":
+            //        con.ConnectionString = _configuration.GetConnectionString("UkConnectionstring");
+            //        Console.WriteLine(con.ConnectionString);
+            //        break;
+            //    case "Jp":
+            //        con.ConnectionString = _configuration.GetConnectionString("JapanConnectionstring");
+            //        Console.WriteLine(con.ConnectionString);
+            //        break;
+            //    case "Us":
+            //        con.ConnectionString = _configuration.GetConnectionString("USAConnectionstring");
+            //        Console.WriteLine(con.ConnectionString);                   
+            //        break;
+            //    default:
+            //        break;
+            //}
+            return Ok();
+        }
+
+        // 1ste way of retrieving data from the database
         private void FetchData()
         {
+            Console.WriteLine(con.ConnectionString);
             // Fetch table names in database
             if (tableNames.Count > 0)
             {
@@ -60,7 +126,7 @@ namespace my_new_app.Controllers
                     });
                 }
                 con.Close();
-               
+
             }
             catch (Exception ex)
             {
@@ -76,11 +142,8 @@ namespace my_new_app.Controllers
          }*/
 
 
-        //[HttpPost]
-        //public JsonResult Post(ChosenDatabase chosenDatabase) {         
+        // [HttpPost]
 
-
-        //}
 
         // 2nd way of retrieving data from the database
         [HttpGet]
