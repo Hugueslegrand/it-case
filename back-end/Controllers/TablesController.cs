@@ -14,7 +14,7 @@ using my_new_app.Data.Models;
 
 namespace my_new_app.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class TablesController : Controller
     {
@@ -22,7 +22,7 @@ namespace my_new_app.Controllers
         SqlDataReader dr;
         SqlConnection con = new SqlConnection();
         List<TableNames> tableNames = new List<TableNames>();
-        string database = "";
+        //string database = "";
 
         private readonly ILogger<TablesController> _logger;
         private readonly IConfiguration _configuration;
@@ -32,74 +32,90 @@ namespace my_new_app.Controllers
         {
             _configuration = configuration;
             // _logger = logger;
-
-            //switch (database)
-            //{
-            //    case "Be":
-            //        con.ConnectionString = _configuration.GetConnectionString("BelgiumConnectionstring");
-            //        break;
-            //    case "Nl":
-            //        con.ConnectionString = _configuration.GetConnectionString("NetherlandsConnectionstring");
-            //        break;
-            //    case "Pl":
-            //        con.ConnectionString = _configuration.GetConnectionString("PolandConnectionstring");
-            //        break;
-            //    case "Uk":
-            //        con.ConnectionString = _configuration.GetConnectionString("UkConnectionstring");
-            //        break;
-            //    case "Jp":
-            //        con.ConnectionString = _configuration.GetConnectionString("JapanConnectionstring");
-            //        break;
-            //    case "Us":
-            //        con.ConnectionString = _configuration.GetConnectionString("USAConnectionstring");
-            //        break;
-            //    default:
-            //        break;
-            //}
         }
+               
+        //Receiver TempData
+        //[HttpGet("Index")]
+        //public IActionResult Index()
+        //{
+        //    //string test = TempData["CountryCode"] as string;
+        //    //Console.WriteLine(test);
 
-        [HttpGet("Index")]
-        public IActionResult Index()
+        //    //string countryCode = TempData["CountryCode"].ToString();
+        //    //Console.WriteLine(countryCode);
+        //    ////if (TempData.ContainsKey("CountryCode"))
+        //    ////{
+        //    ////    countryCode = TempData["CountryCode"].ToString();
+        //    ////}
+        //    //switch (countryCode)
+        //    //{
+        //    //    case "Be":
+        //    //        con.ConnectionString = _configuration.GetConnectionString("BelgiumConnectionstring");
+        //    //        Console.WriteLine(con.ConnectionString);
+        //    //        break;
+        //    //    case "Nl":
+        //    //        con.ConnectionString = _configuration.GetConnectionString("NetherlandsConnectionstring");
+        //    //        Console.WriteLine(con.ConnectionString);
+        //    //        break;
+        //    //    case "Pl":
+        //    //        con.ConnectionString = _configuration.GetConnectionString("PolandConnectionstring");
+        //    //        Console.WriteLine(con.ConnectionString);
+        //    //        break;
+        //    //    case "Uk":
+        //    //        con.ConnectionString = _configuration.GetConnectionString("UkConnectionstring");
+        //    //        Console.WriteLine(con.ConnectionString);
+        //    //        break;
+        //    //    case "Jp":
+        //    //        con.ConnectionString = _configuration.GetConnectionString("JapanConnectionstring");
+        //    //        Console.WriteLine(con.ConnectionString);
+        //    //        break;
+        //    //    case "Us":
+        //    //        con.ConnectionString = _configuration.GetConnectionString("USAConnectionstring");
+        //    //        Console.WriteLine(con.ConnectionString);                   
+        //    //        break;
+        //    //    default:
+        //    //        break;
+        //    //}
+        //    return Ok();
+        //}
+
+        [HttpPost("Connect")]
+        public IActionResult Connect([FromQuery]string CountryCode)
         {
+            if(CountryCode == null)
+            {
+                return BadRequest("Empty values are not allowed");
+            }
 
-            Console.WriteLine(TempData["CountryCode"].GetType());
-
-            //string countryCode = TempData["CountryCode"].ToString();
-            //Console.WriteLine(countryCode);
-            ////if (TempData.ContainsKey("CountryCode"))
-            ////{
-            ////    countryCode = TempData["CountryCode"].ToString();
-            ////}
-            //switch (countryCode)
-            //{
-            //    case "Be":
-            //        con.ConnectionString = _configuration.GetConnectionString("BelgiumConnectionstring");
-            //        Console.WriteLine(con.ConnectionString);
-            //        break;
-            //    case "Nl":
-            //        con.ConnectionString = _configuration.GetConnectionString("NetherlandsConnectionstring");
-            //        Console.WriteLine(con.ConnectionString);
-            //        break;
-            //    case "Pl":
-            //        con.ConnectionString = _configuration.GetConnectionString("PolandConnectionstring");
-            //        Console.WriteLine(con.ConnectionString);
-            //        break;
-            //    case "Uk":
-            //        con.ConnectionString = _configuration.GetConnectionString("UkConnectionstring");
-            //        Console.WriteLine(con.ConnectionString);
-            //        break;
-            //    case "Jp":
-            //        con.ConnectionString = _configuration.GetConnectionString("JapanConnectionstring");
-            //        Console.WriteLine(con.ConnectionString);
-            //        break;
-            //    case "Us":
-            //        con.ConnectionString = _configuration.GetConnectionString("USAConnectionstring");
-            //        Console.WriteLine(con.ConnectionString);                   
-            //        break;
-            //    default:
-            //        break;
-            //}
-            return Ok();
+            switch (CountryCode)
+            {
+                case "Be":
+                    con.ConnectionString = _configuration.GetConnectionString("BelgiumConnectionstring");
+                    Console.WriteLine(con.ConnectionString);
+                    return Ok("");
+                case "Nl":
+                    con.ConnectionString = _configuration.GetConnectionString("NetherlandsConnectionstring");
+                    Console.WriteLine(con.ConnectionString);
+                    return Ok("");
+                case "Pl":
+                    con.ConnectionString = _configuration.GetConnectionString("PolandConnectionstring");
+                    Console.WriteLine(con.ConnectionString);
+                    return Ok("");
+                case "Uk":
+                    con.ConnectionString = _configuration.GetConnectionString("UkConnectionstring");
+                    Console.WriteLine(con.ConnectionString);
+                    return Ok("");
+                case "Jp":
+                    con.ConnectionString = _configuration.GetConnectionString("JapanConnectionstring");
+                    Console.WriteLine(con.ConnectionString);
+                    return Ok("");
+                case "Us":
+                    con.ConnectionString = _configuration.GetConnectionString("USAConnectionstring");
+                    Console.WriteLine(con.ConnectionString);
+                    return Ok("");
+                default:
+                    return BadRequest();
+            }            
         }
 
         // 1ste way of retrieving data from the database
