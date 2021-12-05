@@ -10,6 +10,8 @@ import { ShowTaComponent } from './table/show-ta/show-ta.component';
 import { HttpClientModule } from "@angular/common/http";
 import { SharedService } from "./shared.service";
 import { FormsModule,ReactiveFormsModule } from "@angular/forms";
+import { ColumnComponent } from './column/column.component';
+import { ShowColComponent } from './column/show-col/show-col.component';
 
 
 @NgModule({
@@ -17,6 +19,8 @@ import { FormsModule,ReactiveFormsModule } from "@angular/forms";
     AppComponent,
     TableComponent,
     ShowTaComponent,
+    ColumnComponent,
+    ShowColComponent,
 
   ],
   imports: [
