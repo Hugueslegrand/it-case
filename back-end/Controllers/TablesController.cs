@@ -31,6 +31,7 @@ namespace my_new_app.Controllers
         public TablesController(/*ILogger<TablesController> logger*/IConfiguration configuration)
         {
             _configuration = configuration;
+            con.ConnectionString = _configuration.GetConnectionString("TestConnectionString");
             // _logger = logger;
 
             //switch (database)
@@ -141,8 +142,36 @@ namespace my_new_app.Controllers
              _tablesServive = tablesService;
          }*/
 
+        [HttpPost()]
+        public IActionResult SelectTable([FromQuery] string tableName)
+        {
+            string data = "";
+            if(tableName != null)
+            {
+                data = tableName;
+            }
+            TempData["SelectedTable"] = data;
+            Console.WriteLine(TempData["SelectedTable"]);
+            return RedirectToAction("Index", "Columns");
+        }
 
-        // [HttpPost]
+
+        [HttpPost("SelectedTable")]
+        public IActionResult Connect([FromQuery] string SelectedTable)
+        {
+            string data = "";
+            
+            if (SelectedTable != null)
+            {
+                data = SelectedTable;
+            }
+            //databaseService.SetCountryCode(CountryCode);
+
+
+            TempData["SelectedTable"] = data;
+            Console.WriteLine(TempData["SelectedTable"]);
+            return RedirectToAction("Index", "Columns");
+        }
 
 
         // 2nd way of retrieving data from the database
