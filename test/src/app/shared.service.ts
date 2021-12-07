@@ -13,21 +13,20 @@ export class SharedService {
   getTableList(): Observable<any[]> {
     return this.http.get<any>(this.APIUrl + '/Tables/GetTableNames/getTableNames');
   }
-  /*addDatabase(val: any) {
-    return this.http.post(this.APIUrl + '/Tables', val);
-  }*/
+  
   selectedTable(val: string): any {
     console.log(val);
     return this.http.post(this.APIUrl + '/Tables/SelectTable', val);
   }
 
+
+  
   getColumnList(): Observable<any[]> {
     return this.http.get<any>(this.APIUrl + '/Columns/getColumnNames');
   }
 
-  selectedColumn(val: string): any {
-    console.log(val);
-    return this.http.post(this.APIUrl + '/Columns', val);
+  selectedColumn(val: string): Observable<any> {
+    return this.http.post(this.APIUrl + '/Columns?columnName='+val, val);
   }
 
 }

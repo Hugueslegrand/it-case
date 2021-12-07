@@ -8,9 +8,7 @@ import { SharedService } from 'src/app/shared.service';
 })
 export class ShowColComponent implements OnInit {
   columnList:any = [];
-  modalTitle:any;
-  activateAddEditColCom:boolean = false;
-  column:any;
+
 
   constructor(private sharedService: SharedService) { }
 
@@ -26,12 +24,9 @@ export class ShowColComponent implements OnInit {
   }
 //Function to save selected column from the onclick
   selectedColumn(item: any){
-    this.column= item;
-    this.modalTitle = "Select Column";
-    this.activateAddEditColCom = true;
     //Send the value to the post request
-    this.sharedService.selectedColumn(item);
-    console.log(item.columnNames);
+    this.sharedService.selectedColumn(item).subscribe(data => {
+    });
   }
   
 }
