@@ -18,7 +18,8 @@ export class SharedService {
   }*/
   selectedTable(val: string): any {
     console.log(val);
-    return this.http.post(this.APIUrl + '/Tables/SelectTable', val);
+    return this.http.post(this.APIUrl + '/Tables/SelectTable?tablename=test', val)
+    
   }
 
   getColumnList(): Observable<any[]> {
@@ -28,6 +29,9 @@ export class SharedService {
   selectedColumn(val: string): any {
     console.log(val);
     return this.http.post(this.APIUrl + '/Columns', val);
+  }
+  selectedDatabase(val:string):any{
+    return this.http.post(this.APIUrl+'/Database/SelectDatabase',val)
   }
 
 }

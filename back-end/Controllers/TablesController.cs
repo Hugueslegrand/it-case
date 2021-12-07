@@ -22,15 +22,20 @@ namespace my_new_app.Controllers
         SqlDataReader dr;
         SqlConnection con = new SqlConnection();
         List<TableNames> tableNames = new List<TableNames>();
-        string database = "";
 
-        private readonly ILogger<TablesController> _logger;
+        
+
+       
         private readonly IConfiguration _configuration;
+        private readonly IDatabaseService _databaseService;
+        private readonly ITablesService _tablesService;
 
 
-        public TablesController(/*ILogger<TablesController> logger*/IConfiguration configuration)
+        public TablesController(IConfiguration configuration, IDatabaseService databaseService,ITablesService tablesService)
         {
             _configuration = configuration;
+            _databaseService = databaseService;
+            _tablesService = tablesService;
             con.ConnectionString = _configuration.GetConnectionString("TestConnectionString");
             // _logger = logger;
 
@@ -135,17 +140,13 @@ namespace my_new_app.Controllers
             }
         }
 
-        //public TablesService _tablesServive;
-
-        /* public TablesController(TablesService tablesService)
-         {
-             _tablesServive = tablesService;
-         }*/
+        
 
         // Post to request the selected table from angular (success)
         [HttpPost()]
         public IActionResult SelectTable([FromQuery] string tableName)
         {
+            TablesService.SelectedTable = tableName;
             string data = "";
             if(tableName != null)
             {
@@ -209,12 +210,5 @@ namespace my_new_app.Controllers
         }
 
 
-        //API end point to get all tableNames
-        /*[HttpGet("get-tableNames")]
-        public IActionResult GetAllTableNames()
-        {
-            var allTableNames = _tablesServive.GetAllTableNames();
-            return Ok(allTableNames);
-        }*/
     }
 }

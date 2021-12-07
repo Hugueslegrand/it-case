@@ -6,19 +6,35 @@ using System.Threading.Tasks;
 
 namespace my_new_app.Data.Services
 {
-    public class TablesService
+    public interface ITablesService
     {
-        private AppDbContext _context;
+        string getTable();
+        void SetSelectedTable(string selectedTable);
+    }
+    public class TablesService : ITablesService
+    {
 
-        public TablesService(AppDbContext context)
+        public static string selectedTable;
+        public string getTable()
         {
-            _context = context;
+            return selectedTable;
+        }
+        public static string SelectedTable
+        {
+            get { return selectedTable; }
+            set { selectedTable = value; }
         }
 
-        //Get all table names from the database
-        public List<TableNames> GetAllTableNames() => _context.Tables.ToList();
+        public string GetCountryCode()
+        {
+            return SelectedTable;
+        }
 
-        //Get a single table name from the database
-        //public TableNames GetTableByName(string name) => _context.Tables.FirstOrDefault(n=> n.name ==TableNames);
+        public void SetSelectedTable(string selectedTable)
+        {
+            TablesService.SelectedTable = selectedTable;
+        }
+       
+     
     }
 }

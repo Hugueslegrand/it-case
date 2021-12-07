@@ -12,6 +12,8 @@ import { SharedService } from "./shared.service";
 import { FormsModule,ReactiveFormsModule } from "@angular/forms";
 import { ColumnComponent } from './column/column.component';
 import { ShowColComponent } from './column/show-col/show-col.component';
+import { DatabaseComponent } from './database/database.component';
+import { ShowDatabaseComponent } from './database/show-database/show-database.component';
 
 
 @NgModule({
@@ -21,6 +23,8 @@ import { ShowColComponent } from './column/show-col/show-col.component';
     ShowTaComponent,
     ColumnComponent,
     ShowColComponent,
+    DatabaseComponent,
+    ShowDatabaseComponent,
 
   ],
   imports: [

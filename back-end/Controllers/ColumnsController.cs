@@ -25,11 +25,29 @@ namespace my_new_app.Controllers
 
         private readonly ILogger<ColumnsController> _logger;
         private readonly IConfiguration _configuration;
+        private readonly IDatabaseService _databaseService;
+        private readonly ITablesService _tablesService;
 
-        public ColumnsController(IConfiguration configuration)
+        public ColumnsController(IConfiguration configuration, IDatabaseService databaseService,ITablesService tablesService)
         {
             _configuration = configuration;
+            _databaseService = databaseService;
+            _tablesService = tablesService;
             con.ConnectionString = _configuration.GetConnectionString("TestConnectionString");
+        }
+
+        [HttpGet("selectedTable")]
+        public string getSelectedTable(string selectedTable)
+        {
+            selectedTable = TablesService.SelectedTable;
+            return selectedTable;
+        }
+
+        [HttpGet("getDatabase")]
+        public string getDabase(string database)
+        {
+            database = DatabaseService.CountryCode;
+            return database;
         }
 
         [HttpPost()]

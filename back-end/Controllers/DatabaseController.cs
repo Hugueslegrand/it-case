@@ -10,16 +10,17 @@ namespace my_new_app.Data
     [ApiController]
     public class DatabaseController : Controller
     {
-        private readonly IDatabaseService databaseService;
+        private readonly IDatabaseService _databaseService;
 
         public DatabaseController(IDatabaseService databaseService)
         {
-            this.databaseService = databaseService;
+            _databaseService = databaseService;
         }
 
         [HttpPost("Connect")]
         public IActionResult Connect([FromQuery] string CountryCode)
         {
+            DatabaseService.CountryCode = CountryCode;
             string data = "";
             //Console.WriteLine(CountryCode);
             //this.CountryCode = CountryCode;
@@ -34,6 +35,24 @@ namespace my_new_app.Data
             TempData["CountryCode"] = data;
             Console.WriteLine(TempData["CountryCode"]);
             return RedirectToAction("Index", "Tables");
+        }
+        [HttpPost()]
+        public IActionResult SelectDatabase([FromQuery] string CountryCode)
+        {
+           
+            DatabaseService.CountryCode = CountryCode;
+            string data = "";
+            //Console.WriteLine(CountryCode);
+            //this.CountryCode = CountryCode;
+            //return Ok(CountryCode);
+            if (CountryCode != null)
+            {
+                data = CountryCode;
+            }
+            //databaseService.SetCountryCode(CountryCode);
+
+            return Ok();
+         
         }
     }
 }
