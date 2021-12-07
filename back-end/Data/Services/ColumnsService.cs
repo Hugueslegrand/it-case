@@ -8,14 +8,6 @@ namespace my_new_app.Data.Services
 {
     public class ColumnsService
     {
-        private AppDbContext _context;
-
-        public ColumnsService(AppDbContext context)
-        {
-            _context = context;
-        }
-
-        //Get all column names from the database
-        public List<ColumnNames> GetAllColumnNames() => _context.Columns.ToList();
+        
     }
 }
