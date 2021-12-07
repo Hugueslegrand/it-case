@@ -79,6 +79,9 @@ namespace my_new_app.Controllers
         //    return Ok();
         //}
 
+
+        //HIER KOMT DE DATABASE SELECTION POST BINNEN VANUIT ANGULAR
+
         [HttpPost("Connect")]
         public IActionResult Connect([FromQuery]string CountryCode)
         {

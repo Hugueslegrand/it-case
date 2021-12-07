@@ -6,14 +6,19 @@ import { Observable } from "rxjs";
   providedIn: 'root'
 })
 export class SharedService {
-  readonly APIUrl = "https://localhost:44345/api";
+  readonly APIUrl = "https://localhost:5001/api";
 
   constructor(private http: HttpClient) { }
 
   getTableList(): Observable < any[] > {
     return this.http.get < any > (this.APIUrl+'/Tables/getTableNames');
 }
-/*addDatabase(val: any) {
+
+  selectDatabase(CountryCode: string): Observable<any>{
+    return this.http.post(this.APIUrl + "/Tables/Connect?CountryCode=" + CountryCode,"");
+  }
+
+/*addDatabase(val: any)
   return this.http.post(this.APIUrl + '/Tables', val);
 }*/
 

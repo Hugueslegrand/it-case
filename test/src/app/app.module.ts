@@ -9,12 +9,14 @@ import { ShowTaComponent } from './table/show-ta/show-ta.component';
 import { HttpClientModule } from "@angular/common/http";
 import { SharedService } from "./shared.service";
 import { FormsModule,ReactiveFormsModule } from "@angular/forms";
+import { DatabaseComponent } from './database/database.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TableComponent,
-    ShowTaComponent
+    ShowTaComponent,
+    DatabaseComponent
   ],
   imports: [
     BrowserModule,
