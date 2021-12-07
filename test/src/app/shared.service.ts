@@ -14,7 +14,7 @@ export class SharedService {
     return this.http.get < any > (this.APIUrl+'/Tables/getTableNames');
 }
 
-  selectDatabase(CountryCode: string): Observable<any>{
+  selectedDatabase(CountryCode: string): Observable<any>{
     return this.http.post(this.APIUrl + "/Tables/Connect?CountryCode=" + CountryCode,"");
   }
 
