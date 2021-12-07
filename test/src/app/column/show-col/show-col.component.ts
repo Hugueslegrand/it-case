@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/shared.service';
 
+interface AddColumn{
+  columnNames:string
+}
 @Component({
   selector: 'app-show-col',
   templateUrl: './show-col.component.html',
@@ -11,6 +14,7 @@ export class ShowColComponent implements OnInit {
   modalTitle:any;
   activateAddEditColCom:boolean = false;
   column:any;
+  addColumnString = "";
 
   constructor(private sharedService: SharedService) { }
 
@@ -31,7 +35,18 @@ export class ShowColComponent implements OnInit {
     this.activateAddEditColCom = true;
     //Send the value to the post request
     this.sharedService.selectedColumn(item);
-    console.log(item.columnNames);
+    // console.log(item.columnNames);
   }
+
+  //Function to add a column
+  onChange(input: any){
+    this.addColumnString = input.target.value;
+  }
+
+  addColumn(){
+    let newColumn: AddColumn = {columnNames: this.addColumnString} ;
+    this.columnList.push(newColumn);
+  }
+
   
 }

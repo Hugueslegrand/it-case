@@ -1,4 +1,11 @@
 <p>show-col works!</p>
+<div>
+  <form>
+    <input type="text" (input)="onChange($event)">
+  </form>
+  
+  <button (click)="addColumn()">Add Column</button>
+</div>
 
 
 <table class="table table-striped">
