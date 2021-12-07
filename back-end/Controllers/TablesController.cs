@@ -146,6 +146,11 @@ namespace my_new_app.Controllers
         [HttpPost()]
         public IActionResult SelectTable([FromQuery] string tableName)
         {
+            if (tableName == null)
+            {
+                return BadRequest("empty value");
+            }
+            Console.WriteLine("tablename = "+tableName);
             TablesService.SelectedTable = tableName;
             string data = "";
             if(tableName != null)
@@ -154,7 +159,7 @@ namespace my_new_app.Controllers
             }
             TempData["SelectedTable"] = data;
             Console.WriteLine(TempData["SelectedTable"]);
-            return Ok();
+            return Ok("");
             //return RedirectToAction("Index", "Columns");
         }
 

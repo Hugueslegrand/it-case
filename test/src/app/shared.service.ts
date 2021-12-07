@@ -16,11 +16,14 @@ export class SharedService {
   /*addDatabase(val: any) {
     return this.http.post(this.APIUrl + '/Tables', val);
   }*/
-  selectedTable(val: string): any {
+  selectedTable(val: string): Observable<any> {
     console.log(val);
-    return this.http.post(this.APIUrl + '/Tables/SelectTable?tableName=test', val)
+    return this.http.post(this.APIUrl + "/Tables/SelectTable?tableName="+val, "")
     
   }
+  /*selectDatabase(CountryCode: string): Observable<any>{
+    return this.http.post(this.APIUrl + "/Tables/Connect?CountryCode=" + CountryCode,"");
+  }*/
 
   getColumnList(): Observable<any[]> {
     return this.http.get<any>(this.APIUrl + '/Columns/getColumnNames');
