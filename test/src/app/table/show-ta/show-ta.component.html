@@ -9,7 +9,7 @@
     <tbody>
       <tr *ngFor="let dataItem of tableList">
         <td>{{dataItem.tableNames}}</td>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+        <button type="button"
           (click)="selectedTable(dataItem)">Select</button>
       </tr>
     </tbody>
