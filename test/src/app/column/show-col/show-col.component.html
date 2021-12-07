@@ -10,7 +10,8 @@
     <tbody>
       <tr *ngFor="let dataItem of columnList">
         <td>{{dataItem.columnNames}}</td>
-        
+        <button type="button"
+          (click)="selectedColumn(dataItem)">Select</button>
       </tr>
     </tbody>
 </table>

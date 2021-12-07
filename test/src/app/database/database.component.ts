@@ -14,10 +14,4 @@ export class DatabaseComponent implements OnInit {
   ngOnInit(): void {
   }
 
-selectedDatabase(item: any){
-  item = this.selectedDatabase;
-  //Send the value to the post request
-  this.sharedService.selectedDatabase(item);
-  console.log(item);
-}
 }
