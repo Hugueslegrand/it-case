@@ -8,9 +8,6 @@ import { SharedService } from "src/app/shared.service";
 })
 export class ShowTaComponent implements OnInit {
   tableList:any = [];
-  modalTitle:any;
-  activateAddEditTaCom:boolean = false;
-  table:any;
 
   constructor(private sharedService: SharedService) { }
 
@@ -21,18 +18,14 @@ export class ShowTaComponent implements OnInit {
   refreshTableList() {
     this.sharedService.getTableList().subscribe(data =>{
       this.tableList = data;
-      console.log(this.tableList);
     });
   }
 //Function to save selected table from the onclick
   selectedTable(item: any){
-    this.table= item;
-    this.modalTitle = "Select Table";
-    this.activateAddEditTaCom = true;
     //Send the value to the post request
-    this.sharedService.selectedTable(item);
+    this.sharedService.selectedTable(item.tableNames).subscribe(data => {
+    });
     console.log(item.tableNames);
   }
   
 }
-
