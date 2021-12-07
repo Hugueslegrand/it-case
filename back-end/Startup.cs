@@ -18,7 +18,7 @@ namespace my_new_app
     {
         public string ConnectionString { get; set; }
 
-       
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -48,7 +48,8 @@ namespace my_new_app
             });
             services.AddTransient<TablesService>();
             services.AddTransient<ColumnsService>();
-            services.AddSingleton<IDatabaseService, DatabaseService > ();
+            services.AddSingleton<IDatabaseService, DatabaseService>();
+            services.AddSingleton<ITablesService, TablesService>();
 
             services.AddControllersWithViews().
                 AddNewtonsoftJson(options =>
@@ -68,60 +69,58 @@ namespace my_new_app
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "my_books", Version = "v1" });
             });
 
-            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-           
+
 
             if (env.IsDevelopment())
-             {
-                 app.UseDeveloperExceptionPage();
-                 app.UseSwagger();
-                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "my_books v1"));
-             }
-             else
-             {
-                 app.UseExceptionHandler("/Error");
-                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                 app.UseHsts();
-             }
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "my_books v1"));
+            }
+            else
+            {
+                app.UseExceptionHandler("/Error");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
+            }
 
-             app.UseHttpsRedirection();
-             app.UseStaticFiles();
-             if (!env.IsDevelopment())
-             {
-                 app.UseSpaStaticFiles();
-             }
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            if (!env.IsDevelopment())
+            {
+                app.UseSpaStaticFiles();
+            }
 
-             app.UseRouting();
+            app.UseRouting();
             app.UseCors("AllowOrigin");
 
             app.UseEndpoints(endpoints =>
+            {
+                /*endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller}/{action=Index}/{id?}");*/
+                endpoints.MapControllers();
+            });
+
+            /* app.UseSpa(spa =>
              {
-                 /*endpoints.MapControllerRoute(
-                     name: "default",
-                     pattern: "{controller}/{action=Index}/{id?}");*/
-            endpoints.MapControllers();
-         });
+                 // To learn more about options for serving an Angular SPA from ASP.NET Core,
+                 // see https://go.microsoft.com/fwlink/?linkid=864501
+                 spa.Options.SourcePath = "ClientApp";
+                 if (env.IsDevelopment())
+                 {
+                     spa.UseAngularCliServer(npmScript: "start");
+                    // spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
+                 }
+             });*/
 
-        /* app.UseSpa(spa =>
-         {
-             // To learn more about options for serving an Angular SPA from ASP.NET Core,
-             // see https://go.microsoft.com/fwlink/?linkid=864501
 
-             spa.Options.SourcePath = "ClientApp";
-
-             if (env.IsDevelopment())
-             {
-                 spa.UseAngularCliServer(npmScript: "start");
-                // spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
-             }
-         });*/
-           
-          
         }
     }
 }
