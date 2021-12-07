@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace my_new_app.Controllers
 {
+    //PROBABLY WONT BE NEEDING THIS
     [Route("api/[controller]")]
     [ApiController]
     public class SingleTableController : ControllerBase

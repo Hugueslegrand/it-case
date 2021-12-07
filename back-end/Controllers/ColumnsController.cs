@@ -23,7 +23,7 @@ namespace my_new_app.Controllers
         SqlConnection con = new SqlConnection();
         List<ColumnNames> columnNames = new List<ColumnNames>();
 
-        private readonly ILogger<ColumnsController> _logger;
+      
         private readonly IConfiguration _configuration;
         private readonly IDatabaseService _databaseService;
         private readonly ITablesService _tablesService;
@@ -36,36 +36,19 @@ namespace my_new_app.Controllers
             con.ConnectionString = _configuration.GetConnectionString("TestConnectionString");
         }
 
-        [HttpGet("selectedTable")]
-        public string getSelectedTable(string selectedTable)
-        {
-            selectedTable = TablesService.SelectedTable;
-            return selectedTable;
-        }
 
-        [HttpGet("getDatabase")]
-        public string getDabase(string database)
-        {
-            database = DatabaseService.CountryCode;
-            return database;
-        }
 
         [HttpPost()]
         public IActionResult SelectColumn([FromQuery] string columnName)
         {
-            string data = "";
-            if (columnName != null)
-            {
-                data = columnName;
-            }
-            TempData["SelectedTable"] = data;
-            Console.WriteLine(TempData["SelectedTable"]);
+            //TODO: Store selected column in column services
+
             return Ok();
-            //return RedirectToAction("Index", "Columns");
+        
         }
 
 
-        private void FetchData()
+        private void FetchColumnNames()
         {
             // Fetch column names in database
             if (columnNames.Count > 0)
@@ -99,18 +82,10 @@ namespace my_new_app.Controllers
         [HttpGet("getColumnNames")]
         public List<ColumnNames> GetColumnNames()
         {
-            FetchData();
+            FetchColumnNames();
             return columnNames;
         }
 
-        
-
-        //API end point to get all columns
-        //[HttpGet("get-columnsNames")]
-        //public IActionResult GetAllColumnNames()
-        //{
-        //    var allColumnNames = _columnsServive.GetAllColumnNames();
-        //    return Ok(allColumnNames);
-        //}
+       
     }
 }
