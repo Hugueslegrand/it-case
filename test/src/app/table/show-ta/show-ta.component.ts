@@ -18,6 +18,7 @@ export class ShowTaComponent implements OnInit {
   refreshTableList() {
     this.sharedService.getTableList().subscribe(data =>{
       this.tableList = data;
+      console.log(this.tableList);
     });
   }
 //Function to save selected table from the onclick
