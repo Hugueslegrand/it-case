@@ -6,8 +6,24 @@ using System.Threading.Tasks;
 
 namespace my_new_app.Data.Services
 {
-    public class ColumnsService
+    public interface IColumnsService
     {
-        
+        string getSelectedColumn();
+        void SetSelectedColumn(string selectedColumn);
+    }
+
+    public class ColumnsService : IColumnsService
+    {
+        private string selectedColumn;
+        public string getSelectedColumn()
+        {
+            return selectedColumn;
+        }
+
+        public void SetSelectedColumn(string selectedColumn)
+        {
+            this.selectedColumn = selectedColumn;
+        }
+
     }
 }

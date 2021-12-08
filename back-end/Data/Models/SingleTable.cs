@@ -7,6 +7,7 @@ namespace my_new_app.Data.Models
 {
     public class SingleTable
     {
+        //CLASS NOT NECESSARY
         public string selectedTable { get; set; }
     }
 }

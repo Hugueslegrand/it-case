@@ -8,7 +8,7 @@ namespace my_new_app.Data.Models
 {
     public class ChosenDatabase
     {
-        //NECESSARY???
+        //NECESSARY??? nope
         //[Required]
         //public string CountryCode { get; set; }
     }

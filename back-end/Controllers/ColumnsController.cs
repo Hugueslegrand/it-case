@@ -17,7 +17,7 @@ namespace my_new_app.Controllers
     [ApiController]
     public class ColumnsController : Controller
     {
-        public string selectedColumn;
+        private string selectedTable;
         SqlCommand com = new SqlCommand();
         SqlDataReader dr;
         SqlConnection con = new SqlConnection();
@@ -26,25 +26,41 @@ namespace my_new_app.Controllers
       
         private readonly IConfiguration _configuration;
         private readonly IDatabaseService _databaseService;
-        private readonly ITablesService _tablesService;
+        private readonly IColumnsService _columnsService;
 
-        public ColumnsController(IConfiguration configuration, IDatabaseService databaseService,ITablesService tablesService)
+        public ColumnsController(IConfiguration configuration, IDatabaseService databaseService,ITablesService tablesService,IColumnsService columnsService)
         {
             _configuration = configuration;
             _databaseService = databaseService;
-            _tablesService = tablesService;
+            _columnsService = columnsService;
+            selectedTable = tablesService.getSelectedTable();
             con.ConnectionString = _configuration.GetConnectionString("TestConnectionString");
         }
 
 
+        [HttpGet("selectedTable")]
+        public string getSelectedTable(string selectedTable)
+        {
+            selectedTable = this.selectedTable;
+            return selectedTable;
+        }
 
+
+        // Post to request the selected column from angular 
         [HttpPost()]
         public IActionResult SelectColumn([FromQuery] string columnName)
         {
-            //TODO: Store selected column in column services
+            
+            //Store value in column services
+            _columnsService.SetSelectedColumn(columnName);
 
-            return Ok();
-        
+            if (columnName == null)
+            {
+                return BadRequest("empty value");
+            };
+
+            return Ok("");
+           
         }
 
 
@@ -77,7 +93,7 @@ namespace my_new_app.Controllers
                 Console.WriteLine(ex);
             }
         }
-       
+        
 
         [HttpGet("getColumnNames")]
         public List<ColumnNames> GetColumnNames()
