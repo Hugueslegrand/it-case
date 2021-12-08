@@ -77,7 +77,8 @@ namespace my_new_app.Controllers
         public IActionResult SelectTable([FromQuery] string tableName)
         {
             //Store value in table services
-            TablesService.SelectedTable = tableName;
+            
+            _tablesService.SetSelectedTable(tableName);
             
             if (tableName == null)
             {

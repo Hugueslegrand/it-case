@@ -1,0 +1,15 @@
+<p>value works!</p>
+<table class="table table-striped">
+    <thead>
+      <tr>
+          <th>valueNames</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let dataItem of valueList">
+        <td>{{dataItem.valuesNames}}</td>
+        <button type="button"
+          (click)="selectedValue(dataItem)">Select</button>
+      </tr>
+    </tbody>
+</table>

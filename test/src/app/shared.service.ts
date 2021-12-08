@@ -15,7 +15,7 @@ export class SharedService {
   }
   
   selectedTable(val: string): Observable<any> {
-    return this.http.post(this.APIUrl + "/Tables/SelectTable?tableName="+val, "")
+    return this.http.post(this.APIUrl + '/Tables/SelectTable?tableName='+val, val)
   }
  
   getColumnList(): Observable<any[]> {
@@ -25,5 +25,12 @@ export class SharedService {
   selectedColumn(val: string): Observable<any> {
     return this.http.post(this.APIUrl + '/Columns?columnName='+val, val);
   }
+getValueList(): Observable<any[]> {
+  return this.http.get<any>(this.APIUrl+'/Values/getValueNames');
+}
+
+selectedValue(val:string):Observable<any>{
+  return this.http.post(this.APIUrl + '/Values?valueName='+val,val);
+}
 
 }

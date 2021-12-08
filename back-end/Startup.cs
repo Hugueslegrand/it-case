@@ -46,10 +46,12 @@ namespace my_new_app
             services.Configure<CookieTempDataProviderOptions>(options => {
                 options.Cookie.IsEssential = true;
             });
-            services.AddTransient<TablesService>();
-            services.AddTransient<ColumnsService>();
+          
+            
             services.AddSingleton<IDatabaseService, DatabaseService > ();
             services.AddSingleton<ITablesService, TablesService>();
+            services.AddSingleton<IColumnsService,ColumnsService>();
+            services.AddSingleton<IValuesService, ValuesService>();
 
             services.AddControllersWithViews().
                 AddNewtonsoftJson(options =>

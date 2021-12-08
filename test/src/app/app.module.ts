@@ -14,6 +14,7 @@ import { ColumnComponent } from './column/column.component';
 import { ShowColComponent } from './column/show-col/show-col.component';
 import { DatabaseComponent } from './database/database.component';
 import { ShowDatabaseComponent } from './database/show-database/show-database.component';
+import { ValueComponent } from './value/value.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { ShowDatabaseComponent } from './database/show-database/show-database.co
     ShowColComponent,
     DatabaseComponent,
     ShowDatabaseComponent,
+    ValueComponent,
 
   ],
   imports: [

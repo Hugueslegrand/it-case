@@ -25,8 +25,9 @@ export class ShowColComponent implements OnInit {
 //Function to save selected column from the onclick
   selectedColumn(item: any){
     //Send the value to the post request
-    this.sharedService.selectedColumn(item).subscribe(data => {
+    this.sharedService.selectedColumn(item.columnNames).subscribe(data => {
     });
+    console.log(item);
   }
   
 }

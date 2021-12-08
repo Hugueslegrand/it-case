@@ -27,25 +27,30 @@ namespace my_new_app.Controllers
         private readonly IConfiguration _configuration;
         private readonly IDatabaseService _databaseService;
         private readonly ITablesService _tablesService;
+        private readonly IColumnsService _columnsService;
+      
 
-        public ColumnsController(IConfiguration configuration, IDatabaseService databaseService,ITablesService tablesService)
+        public ColumnsController(IConfiguration configuration, IDatabaseService databaseService, ITablesService tablesService, IColumnsService columnsService)
         {
             _configuration = configuration;
             _databaseService = databaseService;
             _tablesService = tablesService;
+            _columnsService = columnsService;
             con.ConnectionString = _configuration.GetConnectionString("TestConnectionString");
         }
 
         [HttpGet("selectedTable")]
         public string getSelectedTable(string selectedTable)
         {
-            selectedTable = TablesService.SelectedTable;
+            selectedTable = _tablesService.getSelectedTable();
             return selectedTable;
         }
 
         [HttpPost()]
         public IActionResult SelectColumn([FromQuery] string columnName)
         {
+            _columnsService.SetSelectedColumn(columnName);
+            
             //TODO: Store selected column in column services
 
             return Ok();
@@ -64,13 +69,13 @@ namespace my_new_app.Controllers
             {
                 con.Open();
                 com.Connection = con;
-                com.CommandText = "Select * from INFORMATION_SCHEMA.COLUMNS;";
+                com.CommandText = "Select COLUMN_NAME from INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '" + _tablesService.getSelectedTable()+ "';";
                 dr = com.ExecuteReader();
                 while (dr.Read())
                 {
                     columnNames.Add(new ColumnNames()
                     {
-                        columnNames = dr["column_name"].ToString()
+                        columnNames = dr["COLUMN_NAME"].ToString()
 
                     });
                 }
