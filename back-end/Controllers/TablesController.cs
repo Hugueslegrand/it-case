@@ -23,7 +23,9 @@ namespace my_new_app.Controllers
         SqlConnection con = new SqlConnection();
         List<TableNames> tableNames = new List<TableNames>();
 
-      
+        
+
+       
         private readonly IConfiguration _configuration;
         private readonly IDatabaseService _databaseService;
         private readonly ITablesService _tablesService;
@@ -36,7 +38,6 @@ namespace my_new_app.Controllers
             _tablesService = tablesService;
             con.ConnectionString = _configuration.GetConnectionString("TestConnectionString");
         }
-
 
         // 1ste way of retrieving data from the database
         private void FetchTableNames()
@@ -76,7 +77,7 @@ namespace my_new_app.Controllers
         public IActionResult SelectTable([FromQuery] string tableName)
         {
             //Store value in table services
-            _tablesService.SetSelectedTable(tableName);
+            TablesService.SelectedTable = tableName;
             
             if (tableName == null)
             {

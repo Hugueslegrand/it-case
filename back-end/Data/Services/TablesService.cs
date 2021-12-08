@@ -8,21 +8,27 @@ namespace my_new_app.Data.Services
 {
     public interface ITablesService
     {
-        string getSelectedTable();
+        string getTable();
         void SetSelectedTable(string selectedTable);
     }
     public class TablesService : ITablesService
     {
 
-        private  string selectedTable;
-        public string getSelectedTable()
+        public static string selectedTable;
+        public string getTable()
         {
             return selectedTable;
         }
-       
+        public static string SelectedTable
+        {
+            get { return selectedTable; }
+            set { selectedTable = value; }
+        }
+
+
         public void SetSelectedTable(string selectedTable)
         {
-            this.selectedTable = selectedTable;
+            TablesService.SelectedTable = selectedTable;
         }
        
      
