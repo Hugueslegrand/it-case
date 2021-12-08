@@ -69,7 +69,7 @@ namespace my_new_app.Controllers
             {
                 con.Open();
                 com.Connection = con;
-                com.CommandText = "Select COLUMN_NAME from INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '" + _tablesService.getSelectedTable()+ "';";
+                com.CommandText = $"Select COLUMN_NAME from INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{_tablesService.getSelectedTable()}';";
                 dr = com.ExecuteReader();
                 while (dr.Read())
                 {

@@ -49,7 +49,7 @@ namespace my_new_app.Controllers
             {
                 con.Open();
                 com.Connection = con;
-                com.CommandText = "select "+_columnsService.getSelectedColumn()+" from "+_tablesService.getSelectedTable()+ "";
+                com.CommandText = $"select \"{_columnsService.getSelectedColumn()}\" from {_tablesService.getSelectedTable()} ";
                 dr = com.ExecuteReader();
                 while (dr.Read())
                 {
