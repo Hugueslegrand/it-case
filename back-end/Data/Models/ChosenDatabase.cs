@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -13,3 +13,4 @@ namespace my_new_app.Data.Models
         //public string CountryCode { get; set; }
     }
 }
+*/

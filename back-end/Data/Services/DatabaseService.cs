@@ -9,22 +9,18 @@
 
     public class DatabaseService: IDatabaseService
     {
-        private static string countryCode;
+        private string countryCode;
 
-        public static string CountryCode
-        {
-            get { return countryCode; }
-            set { countryCode = value; }
-        }
+       
 
         public string GetCountryCode()
         {
-            return CountryCode;
+            return countryCode;
         }
 
         public void SetCountryCode(string countryCode)
         {
-            DatabaseService.CountryCode = countryCode;
+            this.countryCode = countryCode;
         }
     }
 }
