@@ -10,12 +10,13 @@ export class ShowTaComponent implements OnInit {
   tableList:any = [];
   modalTitle:any;
   activateAddEditTaCom:boolean = false;
-  chosenDatabase:any;
+  table:any;
 
   constructor(private sharedService: SharedService) { }
 
   ngOnInit(): void {
     this.refreshTableList();
+  
   }
   refreshTableList() {
     this.sharedService.getTableList().subscribe(data =>{
@@ -23,13 +24,15 @@ export class ShowTaComponent implements OnInit {
       console.log(this.tableList);
     });
   }
-
-  AddDatabase(){
-    this.chosenDatabase={
-      databaseName:""
-    }
-    this.modalTitle = "choose Database";
-
+//Function to save selected table from the onclick
+  selectedTable(item: any){
+    this.table= item;
+    this.modalTitle = "Select Table";
+    this.activateAddEditTaCom = true;
+    //Send the value to the post request
+    this.sharedService.selectedTable(item);
+    console.log(item.tableNames);
   }
-
+  
 }
+

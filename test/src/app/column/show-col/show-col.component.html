@@ -1,0 +1,23 @@
+<p>show-col works!</p>
+<div>
+  <form>
+    <input type="text" (input)="onChange($event)">
+  </form>
+  
+  <button (click)="addColumn()">Add Column</button>
+</div>
+
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+          <th>columnNames</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let dataItem of columnList">
+        <td>{{dataItem.columnNames}}</td>
+        
+      </tr>
+    </tbody>
+</table>
